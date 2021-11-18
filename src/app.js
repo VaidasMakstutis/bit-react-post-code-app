@@ -1,3 +1,9 @@
+import renderForm from './modules/renderForm';
+import searchCode from './modules/searchCode';
+import searchList from './modules/searchList';
+
 require('bootstrap');
 
-console.log('Your work is starting now...');
+renderForm();
+searchCode();
+searchList();
