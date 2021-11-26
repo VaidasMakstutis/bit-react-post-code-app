@@ -47,6 +47,28 @@ var ajaxService = function ajaxService(term) {
 
 /***/ }),
 
+/***/ "./src/modules/clearHistory.js":
+/*!*************************************!*\
+  !*** ./src/modules/clearHistory.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var clearHistory = function clearHistory() {
+  document.querySelector('.clear-history').addEventListener('click', function () {
+    document.querySelector('ul').innerHTML = '';
+    localStorage.clear();
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (clearHistory);
+
+/***/ }),
+
 /***/ "./src/modules/form.js":
 /*!*****************************!*\
   !*** ./src/modules/form.js ***!
@@ -59,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var form = function form() {
-  return " <div class=\"form-group mb-2\">\n                <input type=\"text\" class=\"form-control term\" placeholder=\"Address\">\n             </div>\n             <div class=\"form-group mx-sm-3 mb-2\">\n                <input type=\"text\" class=\"form-control result\" readonly>\n             </div>\n             <button type=\"submit\" class=\"btn btn-primary mb-2\">Ieskoti kodo</button>\n             <button type=\"reset\" class=\"btn btn-secondary mb-2 history\">Paieskos istorija</button>\n    ";
+  return " <div class=\"form-group mb-2\">\n                <input type=\"text\" class=\"form-control term\" placeholder=\"Adresas\">\n             </div>\n             <div class=\"form-group mx-sm-3 mb-2\">\n                <input type=\"text\" class=\"form-control result\" readonly>\n             </div>\n             <button type=\"submit\" class=\"btn btn-primary mb-2\">Ie\u0161koti kodo</button>\n             <button type=\"reset\" class=\"btn btn-secondary mb-2 history\">Paie\u0161kos istorija</button>\n    ";
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (form);
@@ -143,15 +165,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _clearHistory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clearHistory */ "./src/modules/clearHistory.js");
+
+
 var searchList = function searchList() {
   document.querySelector('.history').addEventListener('click', function () {
+    if (!document.querySelector('.clear-history')) {
+      var button = document.createElement('button');
+      button.className = "clear-history btn btn-danger";
+      button.textContent = "Valyti istorija";
+      document.querySelector('section .card-body').appendChild(button);
+    }
+
+    (0,_clearHistory__WEBPACK_IMPORTED_MODULE_0__["default"])();
+
     for (var key in localStorage) {
       if (localStorage.getItem(key) !== null) {
         var result = JSON.parse(localStorage.getItem(key));
         console.log(result);
         var li = document.createElement('li');
         li.className = "list-group-item";
-        li.textContent = "Adresas: ".concat(result.address, ", pasto kodas: ").concat(result.post_code);
+        li.textContent = "Adresas: ".concat(result.address, ", pa\u0161to kodas: ").concat(result.post_code);
         document.querySelector('ul').appendChild(li);
       }
     }
