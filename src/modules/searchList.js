@@ -3,8 +3,6 @@ import clearHistory from "./clearHistory";
 const searchList = () => {
 document.querySelector('.history').addEventListener('click', ()=> {
     document.querySelector('ul').innerHTML = '';
-    console.log(document.querySelector('ul'));
-    console.log('testas');
 
     if (!document.querySelector('.clear-history')) {
         let button = document.createElement('button');

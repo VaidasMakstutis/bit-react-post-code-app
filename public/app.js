@@ -170,6 +170,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var searchList = function searchList() {
   document.querySelector('.history').addEventListener('click', function () {
+    document.querySelector('ul').innerHTML = '';
+
     if (!document.querySelector('.clear-history')) {
       var button = document.createElement('button');
       button.className = "clear-history btn btn-danger";
